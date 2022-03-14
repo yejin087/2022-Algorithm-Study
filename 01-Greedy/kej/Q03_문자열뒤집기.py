@@ -1,0 +1,30 @@
+ls = list(map(int, input()))
+dic = {0: 0, 1: 0}
+n1 = ls.pop()
+while ls:
+    n2 = ls.pop()
+    if n2 != n1:
+        dic[n2] += 1
+        n1 = n2
+print(min(dic[0], dic[1]))
+
+data = input()
+count0 = 0  # 전부 0으로 바꾸는 경우
+count1 = 0  # 전부 1로 바꾸는 경우
+
+# 첫번째 원소에 대한 처리
+if data[0] == '1':
+    count0 += 1
+else:
+    count1 += 1
+
+# 두번째 원소부터 모든 원소를 확인하며
+for i in range(len(data)-1):
+    if data[i] != data[i-1]:
+        # 다음 수에서 1로 바뀌는 경우
+        if data[i+1] == '1':
+            count0 += 1
+        # 다음 수에서 0으로 바뀌는 경우
+        else:
+            count1 += 1
+print(min(count0, count1))
